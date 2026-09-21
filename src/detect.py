@@ -38,7 +38,7 @@ def determine_threshold(anomaly_scores, static_type, n_percentile, k):
         else:
             return np.percentile(anomaly_scores, n_percentile)
         
-    elif static_type.isin("stddev", "gaussian"):
+    elif static_type in ("stddev", "gaussian"):
         if n_percentile is not None or k is None:
             raise ValueError("Std_Dev threshold only requires argument k")
         else:
