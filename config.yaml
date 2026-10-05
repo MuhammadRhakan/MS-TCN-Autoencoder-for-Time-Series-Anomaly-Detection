@@ -1,0 +1,25 @@
+dataset:
+  name: swat
+  raw_dir: datasets/raw
+  normal_file: SWaT_Dataset_Normal_v1.csv
+  attack_file: SWaT_Dataset_Attack_v0.csv
+
+output:
+  processed_dir: datasets/processed
+  tensor_dir: datasets/tensors  
+
+# Data preprocessing setup
+window_shape : 120
+train_stride : 120
+test_stride : 10
+
+# Framework setup
+batch_size : 256
+latent_dim : 25
+epochs : 50
+learning_rate : 0.0005
+
+# Anomaly detection setup
+percentile : 95
+minimum_abnormal_features : 30
+  

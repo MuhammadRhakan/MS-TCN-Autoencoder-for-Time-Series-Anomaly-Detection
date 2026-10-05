@@ -56,11 +56,7 @@ The raw data consists of two xlsx files:
 ## Execution Sample
 Train neural network
 ```
-python main.py --mode train --data ./datasets/
-```
-Evaluate trained network
-```
-python main.py --mode eval --weights ./model/checkpoints/best_weights.pt
+python main.py
 ```
 
 ## 📚 References
