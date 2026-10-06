@@ -4,7 +4,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 from model.mstcn import AutoEncoder
-from callbacks import configuration_settings
+from src.callbacks import configuration_settings
 from sklearn.metrics import (
     precision_score,
     recall_score,
