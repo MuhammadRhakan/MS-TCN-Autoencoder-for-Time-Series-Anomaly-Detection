@@ -26,12 +26,10 @@ class MSTCN_AutoEncoder:
         train_ds,
         val_ds,
         test_ds,
-        dropout_rate=0.2
     ):    
+        self.batch_size = config['batch_size']
         self.features = features
         self.latent_dim = latent_dim
-        self.dropout_rate = dropout_rate
-        self.batch_size = config['batch_size']
 
         self.train_ds = train_ds
         self.val_ds = val_ds
@@ -55,8 +53,7 @@ class MSTCN_AutoEncoder:
 
         self.mstcn_autoencoder = AutoEncoder(
             features=self.features,
-            latent_dim=self.latent_dim,
-            dropout_rate=self.dropout_rate)
+            latent_dim=self.latent_dim)
 
     def train(self, epochs, learning_rate, callbacks):
         self.mstcn_autoencoder.compile(

@@ -17,6 +17,7 @@ This project implements an end-to-end unsupervised anomaly detection pipeline fo
 | **Recall** | `0.65` | High capture rate on stealthy bias attacks |
 | **F1-Score** | `0.79` | Overall harmonic mean balance |
 | **ROC-AUC** | `0.83` | Threshold-independent anomaly scoring |
+| **ROC-PR** | `0.74` | Threshold-independent anomaly scoring |
 
 ## 🛠️ Architecture Design
 ![architecture design](/assets/architecture.png)

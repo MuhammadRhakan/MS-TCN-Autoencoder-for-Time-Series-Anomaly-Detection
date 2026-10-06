@@ -72,7 +72,7 @@ def main():
     X_test, y_test = X_attack, y_attack
 
     # --------------------------
-    # 4. Normalization and PCA
+    # 4. Scale datasets
     # --------------------------
     scaler = MinMaxScaler()
 
@@ -109,7 +109,6 @@ def main():
         y_val=y_val,
         y_test=y_test)
     print("Preprocessed datasets saved successfully.")
-
 
     np.savez_compressed(
         Path(config['output']['tensor_dir']) / "tensors.npz",

@@ -19,6 +19,7 @@ latent_dim : 25
 epochs : 50
 learning_rate : 0.0005
 
+
 # Anomaly detection setup
 percentile : 95
 minimum_abnormal_features : 30

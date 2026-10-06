@@ -15,10 +15,9 @@ def main():
     model = MSTCN_AutoEncoder(
         features=dataset['train_ds'].shape[-1],
         latent_dim=config['latent_dim'],
-        train_tensor=dataset["train_ds"],
-        val_tensor=dataset["val_ds"],
-        test_tensor=dataset["test_ds"],
-        dropout_rate=0.2)
+        train_ds=dataset["train_ds"],
+        val_ds=dataset["val_ds"],
+        test_ds=dataset["test_ds"])
 
     model.train(
         epochs=config['epochs'],
