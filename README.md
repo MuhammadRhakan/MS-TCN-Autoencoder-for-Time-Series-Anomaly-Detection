@@ -50,11 +50,16 @@ https://www.sutd.edu.sg/itrust/itrust-labs/datasets/dataset-characteristics/swat
 The raw data consists of two xlsx files:
 |File|Description|
 |:----|:----|
-|SWaT_Dataset_Normal_v1| 4 days normal operation for model training |
-|SWaT_Dataset_Attack_v0| 7 days attacked operations for validation and testing |
+|SWaT_Dataset_Normal_v1| 4 days normal operation for model training and validation |
+|SWaT_Dataset_Attack_v0| 7 days attacked operations for testing |
 
 ## Execution Sample
-Train neural network
+Run data preparation
+```
+python -m src.run_data_preparation --config "config.yaml"
+```
+
+Execute main script.py
 ```
 python main.py
 ```
