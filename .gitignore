@@ -3,3 +3,6 @@ myenv/
 
 # dataset (confidential)
 datasets/
+
+# model checkpoints
+model/checkpoints

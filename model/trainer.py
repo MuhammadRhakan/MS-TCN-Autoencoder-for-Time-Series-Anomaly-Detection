@@ -82,10 +82,11 @@ class MSTCN_AutoEncoder:
 
         thresholds = self.determine_thresholds(reference_anomaly_scores, percentile)
         anomaly_scores = self.calculate_anomaly_scores(self.test_ds)
+        detection_results = (anomaly_scores > thresholds).astype(int)
 
-        return (anomaly_scores > thresholds).astype(int)
+        return anomaly_scores, detection_results
         
-    def evaluate_detection_results(self, ground_truth, detection_results, minimum_abnormal_features):
+    def evaluate(self, anomaly_scores, ground_truth, detection_results, minimum_abnormal_features):
         # Threshold-dependent evaluation metrics
         full_timesteps = ground_truth.flatten()
         anomaly_timesteps = (np.sum(detection_results, axis=2) >= minimum_abnormal_features).flatten().astype(int)
@@ -100,7 +101,6 @@ class MSTCN_AutoEncoder:
         print("F1-score  : ", f1)
 
         # Threshold-independent evaluation metrics
-        anomaly_scores = self.calculate_anomaly_scores(self.test_tensor)
         mean_anomaly_scores1D = np.mean(anomaly_scores, axis=2).flatten()
 
         precision, recall, threshold = precision_recall_curve(full_timesteps, mean_anomaly_scores1D)

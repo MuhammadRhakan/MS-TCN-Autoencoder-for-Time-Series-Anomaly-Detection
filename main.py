@@ -2,6 +2,7 @@ import yaml
 import argparse
 import numpy as np
 import tensorflow as tf
+from pathlib import Path
 from src.callbacks import configuration_settings
 from model.trainer import MSTCN_AutoEncoder
 
@@ -9,7 +10,8 @@ from model.trainer import MSTCN_AutoEncoder
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file) 
 
-dataset = config['output']['tensor_directory'] + "/tensors.npz"
+tensor_path = Path(config['output']['tensor_dir']) / "tensors.npz"
+dataset = np.load(tensor_path)
 
 def main():
     model = MSTCN_AutoEncoder(
@@ -24,11 +26,12 @@ def main():
         learning_rate=config['learning_rate'],
         callbacks=configuration_settings())
 
-    detection_results = model.detect_anomalies(
+    anomaly_scores, detection_results = model.detect_anomalies(
         baseline='train',
         percentile=config['percentile'])
 
     model.evaluate(
+        anomaly_scores=anomaly_scores,
         ground_truth=dataset["test_labels"],
         detection_results=detection_results,
         minimum_abnormal_features=config['minimum_abnormal_features'])

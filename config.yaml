@@ -16,7 +16,7 @@ test_stride : 10
 # Framework setup
 batch_size : 256
 latent_dim : 25
-epochs : 50
+epochs : 1
 learning_rate : 0.0005
 
 
