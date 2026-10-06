@@ -2,7 +2,7 @@ import yaml
 import argparse
 import numpy as np
 import tensorflow as tf
-from callbacks import configuration_settings
+from src.callbacks import configuration_settings
 from model.trainer import MSTCN_AutoEncoder
 
 
