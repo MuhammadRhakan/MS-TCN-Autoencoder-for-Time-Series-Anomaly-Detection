@@ -24,21 +24,21 @@ This project implements an end-to-end unsupervised anomaly detection pipeline fo
 ## Project Structure
 ```
 Multi-Scale-TCN-Autoencoder/
-├── assets/                        # Resources
+├── assets/                        # Image resources
 ├── model/
-│   └── mstcn.py                   # Model architecture
+│   ├── mstcn.py                   # Model architecture
+│   └── trainer.py                 # Wrapper file for modeling pipeline
 ├── notebooks/
 │   └── data_analysis.ipynb        # Exploratory data analysis
 ├── src/
-│   ├── config.py                  # Predefined hyperparameters and model configurations
-│   ├── detect.py                  # Anomaly detection from reconstructed errors
-│   ├── evaluate.py                # Evaluation metrics
+│   ├── callbacks.py               # Neural network callback configurations
 │   ├── preprocessing.py           # Data preprocessing steps
-│   ├── sliding_window.py          # Sliding window for neural network input
-│   └── train.py                   # Model training
+│   ├── run_data_preparation.py    # Full data preparation execution
+│   └── sliding_window.py          # Sliding window for neural network input
 ├── .gitignore
-├── main.py                        # Code execution from training to evaluation
-└── README.md
+├── README.md                   
+├── config.yaml                    
+└── main.py                        # Code execution from training to evaluation
 ```
 
 ## Dataset
