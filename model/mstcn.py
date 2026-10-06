@@ -11,15 +11,15 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Hides INFO and WARNING logs
 
 
 class Backbone(keras.layers.Layer):
-    def __init__(self, filters, kernel_size, dilation_rate, dropout_rate=0.2, **kwargs):
+    def __init__(self, filters, kernel_size, dilation_rate, **kwargs):
         super().__init__(**kwargs)
         self.conv1 = Conv1D(filters=filters, kernel_size=kernel_size, padding='causal', dilation_rate=dilation_rate)
         self.gelu1 = Activation('gelu')
-        self.dropout1 = Dropout(dropout_rate)
+        self.dropout1 = Dropout(0.2)
 
         self.conv2 = Conv1D(filters=filters, kernel_size=kernel_size, padding='causal', dilation_rate=dilation_rate)
         self.gelu2 = Activation('gelu')
-        self.dropout2 = Dropout(dropout_rate)
+        self.dropout2 = Dropout(0.2)
 
     def call(self, inputs, training=None):
         x = self.conv1(inputs)
@@ -32,7 +32,7 @@ class Backbone(keras.layers.Layer):
 
 
 class TCNResidualBlock(keras.layers.Layer):
-    def __init__(self, filters, kernel_size, dilation_rate, activation='relu', dropout=0.2, **kwargs):
+    def __init__(self, filters, kernel_size, dilation_rate, **kwargs):
         super().__init__(**kwargs)
         self.filters = filters
         self.kernel_size = kernel_size
@@ -40,13 +40,13 @@ class TCNResidualBlock(keras.layers.Layer):
 
         self.conv1 = Conv1DTranspose(filters=filters, kernel_size=kernel_size, padding='same', dilation_rate=dilation_rate)
         self.norm1 = LayerNormalization()
-        self.relu1 = Activation(activation)
-        self.dropout1 = Dropout(dropout)
+        self.relu1 = Activation('relu')
+        self.dropout1 = Dropout(0.2)
 
         self.conv2 = Conv1DTranspose(filters=filters, kernel_size=kernel_size, padding='same', dilation_rate=dilation_rate)
         self.norm2 = LayerNormalization()
-        self.relu2 = Activation(activation)
-        self.dropout2 = Dropout(dropout)
+        self.relu2 = Activation('relu')
+        self.dropout2 = Dropout(0.2)
 
     def build(self, input_shape):
         if input_shape[-1] != self.filters:
@@ -69,7 +69,7 @@ class TCNResidualBlock(keras.layers.Layer):
 
 
 class MultiScaleEncoderBlock(keras.layers.Layer):
-    def __init__(self, dropout_rate=0.2):
+    def __init__(self):
         super().__init__()
         self.size1 = Conv1D(filters=32, kernel_size=1, padding='same', activation='relu')
 
