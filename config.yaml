@@ -9,18 +9,17 @@ output:
   tensor_dir: datasets/tensors  
 
 # Data preprocessing setup
-window_shape : 120
-train_stride : 120
-test_stride : 10
+window_shape : 150
+train_stride : 10
+test_stride : 150
 
 # Framework setup
 batch_size : 256
-latent_dim : 25
-epochs : 50
+latent_dim : 20
+epochs : 100
 learning_rate : 0.0005
 
 
 # Anomaly detection setup
-percentile : 95
+percentile : 99
 minimum_abnormal_features : 30
-  
